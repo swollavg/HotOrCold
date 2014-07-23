@@ -130,79 +130,30 @@ $(document).ready(function(){
 	    /* If the guess is under the secret number */
 	    if(currentUserGuess < secretNumber){
 		    /* Getting Hot */
-		    if(difference == 1) {
+		    if((difference >=1) && (difference <= 5)) {
 		      feedback += " and getting hotter";
-		    } 
-		    else if(difference == 2) {
-		      feedback += " and getting hotter";
-		    }
-		    else if(difference == 3) {
-		      feedback += " and getting hotter";
-		    }
-		    else if(difference == 4) {
-		      feedback += " and getting hotter";
-		    }
-		    else if(difference == 5) {
-		      feedback += " and getting hotter";
-		    } 
-
-		    /* Getting Cold */
-		    else if(difference == -1) {
-		      feedback += " and getting colder";
-		    } 
-		    else if(difference == -2) {
-		      feedback += " and getting colder";
-		    }
-		    else if(difference == -3) {
-		      feedback += " and getting colder";
-		      
-		    }
-		    else if(difference == -4) {
-		      feedback += " and getting colder";   
-		    }
-		    else if(difference == -5) {
-		      feedback += " and getting colder";
 		    } 
 		    
+
+		    /* Getting Cold */
+		    else if((difference <= -1) && (difference >= -5)) {
+		      feedback += " and getting colder";
+		    } 
 		}
 	    
 
 
 	    /* If the guess is over the secret number */
 	    if(currentUserGuess > secretNumber){
-		    if(difference == -1) {
+		    if((difference <= -1) && (difference >= -5)) {
 		      feedback += " and getting hot";
 		    } 
-		    else if(difference == -2) {
-		      feedback += " and getting hot";
-		    }
-		    else if(difference == -3) {
-		      feedback += " and getting hot";
-		    }
-		    else if(difference == -4) {
-		      feedback += " and getting hot";
-		    }
-		    else if(difference == -5) {
-		      feedback += " and getting hot";
-		    } 
+		    
 		    /* Getting Cold */
-		    else if(difference == 1) {
+		    else if((difference >= 1) && (difference <= 5)) {
 		      feedback += " and getting cold";
 		    } 
-		    else if(difference == -2) {
-		      feedback += " and getting cold";
-		    }
-		    else if(difference == 3) {
-		      feedback += " and getting cold";
-		      
-		    }
-		    else if(difference == 4) {
-		      feedback += " and getting cold";   
-		    }
-		    else if(difference == 5) {
-		      feedback += " and getting cold";
-		    }
-	    } 
+		} 
 
 	} /* Outer Else statement end*/
 

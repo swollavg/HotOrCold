@@ -15,22 +15,33 @@ $(document).ready(function(){
     $(".overlay").fadeOut(1000);
   });
 
+  $('a.new').click(function(){
+  	$('#guessList').children().remove();
+  	$('#feedback').attr("name", "Enter your Guess");
+  	newGame();
+  });
+
+
   function newGame(){
+  var firstGuess = true;
+  var secretNumber = Math.floor(Math.random() * 100 + 1); // generates random # 1-100
+  var prevCloseUserGuess = "";
+  var feedback = ""; // Create a blank string to be a placeholder for the feedback you'll display back to you user.
 
     console.log('secretNumber: ' + secretNumber);
     $('#guessButton').click(function(event){
       event.preventDefault();
-      checkAnswer();
-    });
 
+	checkAnswer();
+    });
   }// new game function end
 
   function checkAnswer() {
-
     var userGuessNum = $('#userGuess').val();        
     $('#guessList').append('<li>' + userGuessNum + '</li>'); // adds number to the guess history.
     $('#userGuess').val(''); // resets text input
 
+    
     if(userGuessNum == secretNumber){
       feedback = 'YOU WIN!';
     }
@@ -53,7 +64,7 @@ $(document).ready(function(){
       prevCloseUserGuess = userGuessNum;
     }
     else if((userGuessNum > secretNumber - 16) && (userGuessNum < secretNumber + 16)){
-      feedback = 'Hot.';
+      feedback = 'Hot';
       if(!firstGuess) {
         secondaryCheck(userGuessNum);
       }
@@ -71,7 +82,7 @@ $(document).ready(function(){
       prevCloseUserGuess = userGuessNum;
     }
     else if((userGuessNum > secretNumber - 26) && (userGuessNum < secretNumber + 26)){
-      feedback = 'cold';
+      feedback = 'Cold';
       if(!firstGuess) {
         secondaryCheck(userGuessNum);
       }
@@ -83,14 +94,15 @@ $(document).ready(function(){
       feedback = 'Ice cold';
     }
     else {
-      feedback = 'Colder than a ring around a polar bears ass';
+      feedback = 'Arctic Cold';
     }
 
     if(firstGuess) {
       firstGuess = false;
     }
 
-    alert(feedback);
+    $('#feedback').text(feedback);
+    
 
   }
 

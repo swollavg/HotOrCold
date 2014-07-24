@@ -5,6 +5,7 @@ $(document).ready(function(){
  var prevCloseUserGuess = "";
  var feedback = ""; // Create a blank string to be a placeholder for the feedback you'll display back to you user.
  var counter = 0;
+ var userGuessNum;
  /*--- Display information modal box ---*/
  $(".what").click(function(){
    $(".overlay").fadeIn(1000);
@@ -24,10 +25,20 @@ $(document).ready(function(){
  });
 
  $('#guessButton').click(function(event){
- 	counter += 1;
-     event.preventDefault();
-     $('#count').text(counter);
-     checkAnswer();
+ 	event.preventDefault();
+	userGuessNum = $('#userGuess').val();
+
+	if((userGuessNum != "") && (!isNaN(userGuessNum))) {
+ 		 counter += 1;
+	     
+	     $('#count').text(counter);
+	     checkAnswer();
+	}
+
+	else{
+		$('#feedback').text("Please type a number between 1-100!");
+		$('#userGuess').val('');
+	}
  });
 
 
@@ -43,72 +54,73 @@ $(document).ready(function(){
  function checkAnswer() {
    console.log('checking answer');
 
-   var userGuessNum = $('#userGuess').val();        
-   $('#guessList').append('<li>' + userGuessNum + '</li>'); // adds number to the guess history.
-   $('#userGuess').val(''); // resets text input
+	   $('#guessList').append('<li>' + userGuessNum + '</li>'); // adds number to the guess history.
+	   $('#userGuess').val(''); // resets text input
 
-   
-   if(userGuessNum == secretNumber){
-     feedback = 'YOU WIN!';
-   }
-   else if((userGuessNum > secretNumber - 6) && (userGuessNum < secretNumber + 6)){
-     feedback = 'Ridiculously Sun Scorching Hot!';
-     if(!firstGuess) {
-       secondaryCheck(userGuessNum);
-     } 
-     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
-     console.log('userGuessNum: ' + userGuessNum);
-     prevCloseUserGuess = userGuessNum;
-   }
-   else if((userGuessNum > secretNumber - 11) && (userGuessNum < secretNumber + 11)){
-     feedback = 'Very Hot';
-     if(!firstGuess) {
-       secondaryCheck(userGuessNum);
-     }
-     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
-     console.log('userGuessNum: ' + userGuessNum);
-     prevCloseUserGuess = userGuessNum;
-   }
-   else if((userGuessNum > secretNumber - 16) && (userGuessNum < secretNumber + 16)){
-     feedback = 'Hot';
-     if(!firstGuess) {
-       secondaryCheck(userGuessNum);
-     }
-     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
-     console.log('userGuessNum: ' + userGuessNum);
-     prevCloseUserGuess = userGuessNum;
-   }
-   else if((userGuessNum > secretNumber - 21) && (userGuessNum < secretNumber + 21)){
-     feedback = 'warm';
-     if(!firstGuess) {
-       secondaryCheck(userGuessNum);
-     }
-     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
-     console.log('userGuessNum: ' + userGuessNum);
-     prevCloseUserGuess = userGuessNum;
-   }
-   else if((userGuessNum > secretNumber - 26) && (userGuessNum < secretNumber + 26)){
-     feedback = 'Cold';
-     if(!firstGuess) {
-       secondaryCheck(userGuessNum);
-     }
-     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
-     console.log('userGuessNum: ' + userGuessNum);
-     prevCloseUserGuess = userGuessNum;
-   }
-   else if((userGuessNum > secretNumber - 35) && (userGuessNum < secretNumber + 35)){
-     feedback = 'Ice cold';
-   }
-   else {
-     feedback = 'Arctic Cold';
-   }
+	   
+	   if(userGuessNum == secretNumber){
+	     feedback = 'YOU WIN!';
+	   }
+	   else if((userGuessNum > secretNumber - 6) && (userGuessNum < secretNumber + 6)){
+	     feedback = 'Ridiculously Sun Scorching Hot!';
+	     if(!firstGuess) {
+	       secondaryCheck(userGuessNum);
+	     } 
+	     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
+	     console.log('userGuessNum: ' + userGuessNum);
+	     prevCloseUserGuess = userGuessNum;
+	   }
+	   else if((userGuessNum > secretNumber - 11) && (userGuessNum < secretNumber + 11)){
+	     feedback = 'Very Hot';
+	     if(!firstGuess) {
+	       secondaryCheck(userGuessNum);
+	     }
+	     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
+	     console.log('userGuessNum: ' + userGuessNum);
+	     prevCloseUserGuess = userGuessNum;
+	   }
+	   else if((userGuessNum > secretNumber - 16) && (userGuessNum < secretNumber + 16)){
+	     feedback = 'Hot';
+	     if(!firstGuess) {
+	       secondaryCheck(userGuessNum);
+	     }
+	     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
+	     console.log('userGuessNum: ' + userGuessNum);
+	     prevCloseUserGuess = userGuessNum;
+	   }
+	   else if((userGuessNum > secretNumber - 21) && (userGuessNum < secretNumber + 21)){
+	     feedback = 'warm';
+	     if(!firstGuess) {
+	       secondaryCheck(userGuessNum);
+	     }
+	     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
+	     console.log('userGuessNum: ' + userGuessNum);
+	     prevCloseUserGuess = userGuessNum;
+	   }
+	   else if((userGuessNum > secretNumber - 26) && (userGuessNum < secretNumber + 26)){
+	     feedback = 'Cold';
+	     if(!firstGuess) {
+	       secondaryCheck(userGuessNum);
+	     }
+	     console.log('prevCloseUserGuess: ' + prevCloseUserGuess);
+	     console.log('userGuessNum: ' + userGuessNum);
+	     prevCloseUserGuess = userGuessNum;
+	   }
+	   else if((userGuessNum > secretNumber - 35) && (userGuessNum < secretNumber + 35)){
+	     feedback = 'Ice cold';
+	   }
+	   else {
+	     feedback = 'Arctic Cold';
+	   }
 
-   if(firstGuess) {
-     firstGuess = false;
-   }
+	   if(firstGuess) {
+	     firstGuess = false;
+	   }
 
-   $('#feedback').text(feedback);
-   
+	   $('#feedback').text(feedback);
+    
+
+    
 
  }
 

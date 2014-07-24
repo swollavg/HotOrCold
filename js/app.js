@@ -1,12 +1,10 @@
 $(document).ready(function(){
  
  var firstGuess = true;
- /* Create a placeholder variable */
  var secretNumber;
- 
  var prevCloseUserGuess = "";
  var feedback = ""; // Create a blank string to be a placeholder for the feedback you'll display back to you user.
-
+ var counter = 0;
  /*--- Display information modal box ---*/
  $(".what").click(function(){
    $(".overlay").fadeIn(1000);
@@ -18,14 +16,17 @@ $(document).ready(function(){
  });
 
  $('a.new').click(function(){
+ 	counter = 0;
+ 	$('#count').text(counter);
  	$('#guessList').children().remove();
  	$('#feedback').text("Enter your Guess");
  	newGame();
  });
 
  $('#guessButton').click(function(event){
+ 	counter += 1;
      event.preventDefault();
-     console.log('guess clicked');
+     $('#count').text(counter);
      checkAnswer();
  });
 

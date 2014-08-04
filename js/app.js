@@ -16,6 +16,12 @@ $(document).ready(function(){
    $(".overlay").fadeOut(1000);
  });
 
+
+/*Prevents the user from inputting an empty string using spacebar.*/
+ $('#userGuess').on('keydown', function(e){
+ 	return e.which !== 32;
+ });
+
  $('a.new').click(function(){
  	counter = 0;
  	$('#count').text(counter);
@@ -28,7 +34,8 @@ $(document).ready(function(){
  	event.preventDefault();
 	userGuessNum = $('#userGuess').val();
 
-	if((userGuessNum != "") && (!isNaN(userGuessNum))) {
+     /*Prevents non numbers, empty spaces and numbers outside the range 1-100*/
+	if( (userGuessNum != "") && (!isNaN(userGuessNum)) && ((userGuessNum >=0) && (userGuessNum <= 100))) {
  		 counter += 1;
 	     
 	     $('#count').text(counter);
